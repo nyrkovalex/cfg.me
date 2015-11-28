@@ -1,0 +1,27 @@
+{
+  "name": "cfg.me",
+  "version": "0.0.1",
+  "description": "Configuration file loading facility",
+  "main": "js/index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nyrkovalex/cfg.me.git"
+  },
+  "keywords": [
+    "configuration",
+    "file",
+    "load"
+  ],
+  "author": "nyrkovalex@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nyrkovalex/cfg.me/issues"
+  },
+  "homepage": "https://github.com/nyrkovalex/cfg.me#readme",
+  "devDependencies": {
+    "jasmine": "^2.3.2"
+  }
+}
