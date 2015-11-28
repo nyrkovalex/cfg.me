@@ -17,23 +17,23 @@ function freeze<T>(target: any): T {
 	return Object.freeze(target);
 }
 
-export class Cfg<T> {
-	private _parsed: T = null;
+export class Cfg {
+	private _parsed: any = null;
 	constructor(private _reader: FileReader) { }
 
-	get(): T {
+	get<T>(): T {
 		if (this._parsed === null) {
 			throw new CfgNotLoadedError();
 		}
 		return this._parsed;
 	}
 
-	load(path: string): T;
-	load(path: string, encoding: string): T;
-	load(path: string, encoding?: string): T {
+	load<T>(path: string): T;
+	load<T>(path: string, encoding: string): T;
+	load<T>(path: string, encoding?: string): T {
 		let content = this._reader(path, encoding || DEFAULT_ENCODING);
 		this._parsed = freeze<T>(JSON.parse(content));
-		return this.get();
+		return this.get<T>();
 	}
 }
 

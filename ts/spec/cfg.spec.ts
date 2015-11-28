@@ -8,7 +8,7 @@ class SampleConfig {
 
 describe('Cfg class', () => {
 	let fileReader: FileReader;
-	let cfg: Cfg<SampleConfig>;
+	let cfg: Cfg;
 
 	let content: SampleConfig = {
 		numeric: 1,
@@ -22,7 +22,7 @@ describe('Cfg class', () => {
 
 	beforeEach(() => {
 		fileReader = jasmine.createSpy('fileReader', () => contentStr).and.callThrough();
-		cfg = new Cfg<SampleConfig>(fileReader);
+		cfg = new Cfg(fileReader);
 	});
 
 	it('should load a file with default encoding', () => {
@@ -51,19 +51,19 @@ describe('Cfg class', () => {
 	});
 
 	it('should not be able to modify primitive properties', () => {
-		let loaded = cfg.load('path');
+		let loaded = cfg.load<SampleConfig>('path');
 		loaded.numeric = 100;
 		expect(loaded).toEqual(content);
 	});
 
 	it('should not be able to modify object properties', () => {
-		let loaded = cfg.load('path');
+		let loaded = cfg.load<SampleConfig>('path');
 		loaded.object['foo'] = 'changed!';
 		expect(loaded).toEqual(content);
 	});
 
 	it('should not be able to modify array properties', () => {
-		let loaded = cfg.load('path');
+		let loaded = cfg.load<SampleConfig>('path');
 		loaded.array[0]['b'] = 'c';
 		expect(loaded).toEqual(content);
 	});
